@@ -67,26 +67,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgregarSucursales.aspx" />
+    <Content Include="AgregarSucursal.aspx" />
     <Content Include="ListadoSucursales.aspx" />
     <Content Include="EliminarSucursales.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregarSucursales.aspx.cs">
-      <DependentUpon>AgregarSucursales.aspx</DependentUpon>
+    <Compile Include="AgregarSucursal.aspx.cs">
+      <DependentUpon>AgregarSucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarSucursales.aspx.designer.cs">
-      <DependentUpon>AgregarSucursales.aspx</DependentUpon>
+    <Compile Include="AgregarSucursal.aspx.designer.cs">
+      <DependentUpon>AgregarSucursal.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoSucursales.aspx.cs">
       <DependentUpon>ListadoSucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListadoSucursales.aspx.designer.cs">
       <DependentUpon>ListadoSucursales.aspx</DependentUpon>
     </Compile>
     <Compile Include="EliminarSucursales.aspx.cs">
       <DependentUpon>EliminarSucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EliminarSucursales.aspx.designer.cs">
       <DependentUpon>EliminarSucursales.aspx</DependentUpon>
