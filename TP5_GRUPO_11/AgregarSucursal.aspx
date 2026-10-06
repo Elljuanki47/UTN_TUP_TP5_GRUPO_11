@@ -28,6 +28,13 @@
         .auto-style7 {
             width: 182px;
         }
+        .auto-style8 {
+            height: 54px;
+            width: 183px;
+        }
+        .auto-style9 {
+            width: 183px;
+        }
     </style>
 </head>
 <body>
@@ -35,7 +42,7 @@
         <table class="auto-style1">
             <tr>
                 <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style6">
+                <td class="auto-style8">
 
             <asp:HyperLink ID="hlAgregarSucursal" runat="server"
                 NavigateUrl="~/AgregarSucursal.aspx"
@@ -62,6 +69,12 @@
                 <td class="auto-style2"></td>
             </tr>
             <tr>
+                <td class="auto-style4" colspan="2" style="font-size: xx-large; font-weight: bold">GRUPO N° 11</td>
+                <td class="auto-style7">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
                 <td class="auto-style4" colspan="2" style="font-size: xx-large; font-weight: bold">Agregar Sucursal</td>
                 <td class="auto-style7">&nbsp;</td>
                 <td>&nbsp;</td>
@@ -75,7 +88,7 @@
             </asp:Label>
 
                 </td>
-                <td class="auto-style7">
+                <td class="auto-style9">
 
             <asp:TextBox ID="txtNombreSucursal" runat="server">
             </asp:TextBox>
@@ -101,7 +114,7 @@
             </asp:Label>
 
                 </td>
-                <td class="auto-style7">
+                <td class="auto-style9">
 
             <asp:TextBox ID="txtDescripcion" runat="server">
             </asp:TextBox>
@@ -123,7 +136,7 @@
             </asp:Label>
 
                 </td>
-                <td class="auto-style7">
+                <td class="auto-style9">
 
             <asp:DropDownList ID="ddlProvincia" runat="server" Height="16px" Width="124px">
             <asp:ListItem Text="--Seleccionar--" Value="0" Selected="True"></asp:ListItem>
@@ -146,7 +159,7 @@
             </asp:Label>
 
                 </td>
-                <td class="auto-style7">
+                <td class="auto-style9">
 
             <asp:TextBox ID="txtDireccion" runat="server">
             </asp:TextBox>
@@ -162,14 +175,16 @@
             </tr>
             <tr>
                 <td class="auto-style5">&nbsp;</td>
-                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style9">&nbsp;</td>
                 <td class="auto-style7">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style5">&nbsp;</td>
-                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style9">
+                    <asp:Button ID="aceptar" runat="server" Text="aceptar" />
+                </td>
                 <td class="auto-style7">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
