@@ -70,6 +70,8 @@
                 <td class="auto-style3">
             
             <asp:TextBox ID="txtIdSucursal" runat="server"></asp:TextBox>
+                    <br />
+            <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
             
                 </td>
                 <td class="auto-style2">&nbsp;</td>
@@ -77,16 +79,24 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style3">
-            
-            <asp:Button ID="btnFiltrar" runat="server"
-                Text="Filtrar" />
-                </td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+
+    <td class="auto-style3">
+    
+        <asp:Button ID="btnFiltrar" runat="server"
+            Text="Filtrar" OnClick="btnFiltrar_Click" />
+
+
+        <asp:Button ID="btnMostrarTodos" runat="server"
+            Text="Mostrar todos"
+            OnClick="btnMostrarTodos_Click" />
+
+                   </td>
+                   <td class="auto-style3">&nbsp;</td>
+                 <td class="auto-style2">&nbsp;</td>
+                 <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                </tr>
+                
             <tr>
                 <td class="auto-style3">&nbsp;</td>
                 <td class="auto-style3">&nbsp;</td>
