@@ -5,52 +5,98 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 200px;
+        }
+        .auto-style3 {
+            width: 225px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h2>Listado de sucursales</h2>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style3">
 
             <asp:HyperLink ID="hlAgregarSucursal" runat="server"
                 NavigateUrl="~/AgregarSucursal.aspx"
-                Text="Agregar sucursal">
-            </asp:HyperLink>
+                Text="Agregar sucursal"> </asp:HyperLink>
 
-            &nbsp;&nbsp;
+                </td>
+                <td class="auto-style3">
 
             <asp:HyperLink ID="hlListadoSucursales" runat="server"
                 NavigateUrl="~/ListadoSucursales.aspx"
-                Text="Listado de sucursales">
-            </asp:HyperLink>
+                Text="Listado de sucursales"> </asp:HyperLink>
 
-            &nbsp;&nbsp;
+                </td>
+                <td class="auto-style2">
 
             <asp:HyperLink ID="hlEliminarSucursal" runat="server"
                 NavigateUrl="~/EliminarSucursales.aspx"
-                Text="Eliminar sucursal">
-            </asp:HyperLink>
+                Text="Eliminar sucursal"> </asp:HyperLink>
 
-            <br /><br />
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3" style="font-weight: bold; font-size: x-large">Listado de sucursales</td>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3">
             
             <asp:Label ID="lblIdSucursal" runat="server"
                 Text="Ingrese ID sucursal:">
             </asp:Label>
             
-            <asp:TextBox ID="txtIdSucursal" runat="server">
-            </asp:TextBox>
+                </td>
+                <td class="auto-style3">
             
-            <asp:RegularExpressionValidator ID="revIdSucursal" runat="server"
-                ControlToValidate="txtIdSucursal"
-                ValidationExpression="^[0-9]+$"
-                ErrorMessage="Ingrese un valor numérico."
-                ForeColor="Red">
-            </asp:RegularExpressionValidator>
+            <asp:TextBox ID="txtIdSucursal" runat="server"></asp:TextBox>
             
-            <br /><br />
+                </td>
+                <td class="auto-style2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3">
             
             <asp:Button ID="btnFiltrar" runat="server"
                 Text="Filtrar" />
-        </div>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <asp:GridView ID="gvSucursales" runat="server">
+        </asp:GridView>
     </form>
 </body>
 </html>
