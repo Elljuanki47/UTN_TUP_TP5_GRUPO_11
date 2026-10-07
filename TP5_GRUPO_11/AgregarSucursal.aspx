@@ -35,6 +35,21 @@
         .auto-style9 {
             width: 183px;
         }
+        .auto-style10 {
+            width: 137px;
+            height: 37px;
+        }
+        .auto-style11 {
+            width: 183px;
+            height: 37px;
+        }
+        .auto-style12 {
+            width: 182px;
+            height: 37px;
+        }
+        .auto-style13 {
+            height: 37px;
+        }
     </style>
 </head>
 <body>
@@ -174,11 +189,11 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style5">&nbsp;</td>
-                <td class="auto-style9">&nbsp;</td>
-                <td class="auto-style7">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style10"></td>
+                <td class="auto-style11"></td>
+                <td class="auto-style12"></td>
+                <td class="auto-style13"></td>
+                <td class="auto-style13"></td>
             </tr>
             <tr>
                 <td class="auto-style5">&nbsp;</td>
@@ -186,7 +201,9 @@
                     <asp:Button ID="aceptar" runat="server" Text="aceptar" />
                 </td>
                 <td class="auto-style7">&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Button ID="Guardar" runat="server" OnClick="Guardar_Click" Text="Guardar" />
+                </td>
                 <td>&nbsp;</td>
             </tr>
         </table>
