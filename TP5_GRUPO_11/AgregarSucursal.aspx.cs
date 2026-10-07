@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,31 @@ namespace TP5_GRUPO_11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
 
+                SqlConnection conexion = new SqlConnection(cadenaConexion);
+                conexion.Open();
+
+                string consulta = "SELECT * FROM Provincia";
+
+                SqlCommand comando = new SqlCommand(consulta, conexion);
+
+                SqlDataReader reader = comando.ExecuteReader();
+
+                ddlProvincia.DataSource = reader;
+                ddlProvincia.DataTextField = "DescripcionProvincia";
+                ddlProvincia.DataValueField = "Id_Provincia";
+                ddlProvincia.DataBind();
+
+                conexion.Close();
+
+                ddlProvincia.Items.Add(
+                    new ListItem("--Seleccione una provincia--", "0"));
+
+                ddlProvincia.SelectedValue = "0";
+            }
         }
     }
 }
