@@ -83,6 +83,7 @@
                 </td>
                 <td class="auto-style2"></td>
             </tr>
+
             <tr>
                 <td class="auto-style4" colspan="2" style="font-size: xx-large; font-weight: bold">GRUPO N° 11</td>
                 <td class="auto-style7">&nbsp;</td>
@@ -95,6 +96,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+
             <tr>
                 <td class="auto-style5">
 
@@ -121,6 +123,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+
             <tr>
                 <td class="auto-style5">
 
@@ -143,6 +146,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+
             <tr>
                 <td class="auto-style5">
 
@@ -160,12 +164,13 @@
                 </td>
                 <td class="auto-style7">
 
-            <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" InitialValue="--Seleccionar--"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" ErrorMessage="Seleccione una provincia" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
 
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+
             <tr>
                 <td class="auto-style5">
 
@@ -188,6 +193,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+
             <tr>
                 <td class="auto-style10"></td>
                 <td class="auto-style11"></td>
@@ -195,17 +201,32 @@
                 <td class="auto-style13"></td>
                 <td class="auto-style13"></td>
             </tr>
+
             <tr>
                 <td class="auto-style5">&nbsp;</td>
                 <td class="auto-style9">
-                    <asp:Button ID="aceptar" runat="server" Text="aceptar" />
+                    <asp:Button ID="aceptar" runat="server" Text="aceptar" OnClick="aceptar_Click" />
                 </td>
                 <td class="auto-style7">&nbsp;</td>
                 <td>
-                    <asp:Button ID="Guardar" runat="server" OnClick="Guardar_Click" Text="Guardar" />
+                    &nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                        <tr>
+                <td class="auto-style5">&nbsp;</td>
+                <td class="auto-style9" colspan="3">
+
+            <asp:Label ID="lblMensaje" runat="server"
+                ForeColor="Green"
+                Font-Bold="True">
+            </asp:Label>
+
                 </td>
                 <td>&nbsp;</td>
             </tr>
+
+        </table>
+
         </table>
     </form>
 </body>

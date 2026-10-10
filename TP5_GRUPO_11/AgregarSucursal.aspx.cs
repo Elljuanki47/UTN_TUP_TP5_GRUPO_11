@@ -14,34 +14,48 @@ namespace TP5_GRUPO_11
         {
             if (!IsPostBack)
             {
-                string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
+                Negocios negocios = new Negocios();
 
-                SqlConnection conexion = new SqlConnection(cadenaConexion);
-                conexion.Open();
-
-                string consulta = "SELECT * FROM Provincia";
-
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-
-                SqlDataReader reader = comando.ExecuteReader();
-
-                ddlProvincia.DataSource = reader;
+                ddlProvincia.DataSource = negocios.Provincias();
                 ddlProvincia.DataTextField = "DescripcionProvincia";
                 ddlProvincia.DataValueField = "Id_Provincia";
                 ddlProvincia.DataBind();
 
-                conexion.Close();
-
-                ddlProvincia.Items.Add(
+                ddlProvincia.Items.Insert(
+                    0,
                     new ListItem("--Seleccione una provincia--", "0"));
 
                 ddlProvincia.SelectedValue = "0";
             }
         }
 
-        protected void Guardar_Click(object sender, EventArgs e)
+        protected void aceptar_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                Negocios negocios = new Negocios();
 
+                int filasAfectadas = negocios.AgregarSucursal(txtNombreSucursal.Text, txtDescripcion.Text, Convert.ToInt32(ddlProvincia.SelectedValue), txtDireccion.Text);
+
+                if (filasAfectadas == 1)
+                {
+                    lblMensaje.Text = "La sucursal se ha agregar con exito";
+                    limpiarCampos();
+                }
+                else
+                {
+                    lblMensaje.Text = "No se pudo agregar la sucursal";
+                }
+            }
+        }
+
+        private void limpiarCampos()
+        {
+            txtNombreSucursal.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+
+            ddlProvincia.SelectedValue = "0";
         }
     }
 }
