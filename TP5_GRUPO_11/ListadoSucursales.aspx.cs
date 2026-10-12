@@ -10,36 +10,30 @@ namespace TP5_GRUPO_11
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        private const string CadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
-        private string consultaSQL = @"SELECT s.Id_Sucursal AS ID_SUCURSAL,
-                                               s.NombreSucursal AS NOMBRE,
-                                               s.DescripcionSucursal AS DESCRIPCION,
-                                               p.DescripcionProvincia AS PROVINCIA,
-                                               s.DireccionSucursal AS DIRECCION
-                                        FROM Sucursal s
-                                        INNER JOIN Provincia p ON s.Id_ProvinciaSucursal = p.Id_Provincia";
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                SqlConnection connection = new SqlConnection(CadenaConexion);
-                connection.Open();
-
-                SqlCommand sqlcommand = new SqlCommand(consultaSQL, connection);
-                SqlDataReader sqldatareader = sqlcommand.ExecuteReader();
-
-                gvSucursales.DataSource = sqldatareader;
-                gvSucursales.DataBind();
-                connection.Close();
+                CargarSucursales();
             }
+        }
+
+        private void CargarSucursales()
+        {
+            Negocios negocio = new Negocios();
+
+            gvSucursales.DataSource = negocio.ListarSucursales();
+            gvSucursales.DataBind();
         }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            lblMensaje.Text = string.Empty;
+            lblMensaje.Text = "";
 
-            if (txtIdSucursal.Text.Trim() == "")
+            string textoId = txtIdSucursal.Text.Trim();
+            txtIdSucursal.Text = "";
+
+            if (textoId == "")
             {
                 lblMensaje.Text = "Debe ingresar un ID de sucursal.";
                 return;
@@ -47,42 +41,39 @@ namespace TP5_GRUPO_11
 
             int idSucursal;
 
-            if (int.TryParse(txtIdSucursal.Text, out idSucursal))
+            if (!int.TryParse(textoId, out idSucursal))
             {
-                if (idSucursal > 0)
-                {
-                    Negocios negocio = new Negocios();
-
-                    gvSucursales.DataSource = negocio.FiltrarSucursal(idSucursal);
-                    gvSucursales.DataBind();
-                }
-                else
-                {
-                    lblMensaje.Text = "El ID de sucursal debe ser mayor a cero.";
-                }
+                lblMensaje.Text =
+                    "Debe ingresar un ID de sucursal que sea un número entero.";
+                return;
             }
-            else
+
+            if (idSucursal <= 0)
             {
-                lblMensaje.Text = "Debe ingresar un ID  de sucursal que sea numero entero.";
+                lblMensaje.Text = "El ID de sucursal debe ser mayor a cero.";
+                return;
+            }
+
+            Negocios negocio = new Negocios();
+
+            using (SqlDataReader lector = negocio.FiltrarSucursal(idSucursal))
+            {
+                if (!lector.HasRows)
+                {
+                    lblMensaje.Text = "No se encontró una sucursal con ese ID.";
+                }
+
+                gvSucursales.DataSource = lector;
+                gvSucursales.DataBind();
             }
         }
 
-
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
-            SqlConnection connection = new SqlConnection(CadenaConexion);
-            connection.Open();
-
-            SqlCommand sqlcommand = new SqlCommand(consultaSQL, connection);
-            SqlDataReader sqldatareader = sqlcommand.ExecuteReader();
-
-            gvSucursales.DataSource = sqldatareader;
-            gvSucursales.DataBind();
-
-            connection.Close();
-
             txtIdSucursal.Text = "";
             lblMensaje.Text = "";
+
+            CargarSucursales();
         }
     }
 }

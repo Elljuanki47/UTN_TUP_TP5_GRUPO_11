@@ -45,7 +45,30 @@ namespace TP5_GRUPO_11
 
             return comando.ExecuteReader(CommandBehavior.CloseConnection);
         }
-        
+        public DataTable ListarSucursales()
+        {
+            string consulta = @"
+        SELECT s.Id_Sucursal AS ID_SUCURSAL,
+               s.NombreSucursal AS NOMBRE,
+               s.DescripcionSucursal AS DESCRIPCION,
+               p.DescripcionProvincia AS PROVINCIA,
+               s.DireccionSucursal AS DIRECCION
+        FROM Sucursal s
+        INNER JOIN Provincia p
+            ON s.Id_ProvinciaSucursal = p.Id_Provincia
+        ORDER BY s.Id_Sucursal";
+
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion))
+                {
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    return tabla;
+                }
+            }
+        }
+
         public int EliminarSucursal(int idSucursal)
         {
             int filasAfectadas;
