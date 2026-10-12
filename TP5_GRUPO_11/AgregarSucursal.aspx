@@ -226,8 +226,6 @@
             </tr>
 
         </table>
-
-        </table>
     </form>
 </body>
 </html>

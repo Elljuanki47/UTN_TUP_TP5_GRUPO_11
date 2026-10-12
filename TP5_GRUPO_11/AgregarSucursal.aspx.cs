@@ -31,21 +31,53 @@ namespace TP5_GRUPO_11
 
         protected void aceptar_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            lblMensaje.Text = "";
+
+            if (!Page.IsValid)
             {
-                Negocios negocios = new Negocios();
+                return;
+            }
 
-                int filasAfectadas = negocios.AgregarSucursal(txtNombreSucursal.Text, txtDescripcion.Text, Convert.ToInt32(ddlProvincia.SelectedValue), txtDireccion.Text);
+            string nombre = txtNombreSucursal.Text.Trim();
+            string descripcion = txtDescripcion.Text.Trim();
+            string direccion = txtDireccion.Text.Trim();
 
-                if (filasAfectadas == 1)
-                {
-                    lblMensaje.Text = "La sucursal se ha agregar con exito";
-                    limpiarCampos();
-                }
-                else
-                {
-                    lblMensaje.Text = "No se pudo agregar la sucursal";
-                }
+            if (nombre == "" || descripcion == "" || direccion == "")
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Todos los campos son obligatorios.";
+                return;
+            }
+
+            if (nombre.Length > 100 ||
+                descripcion.Length > 100 ||
+                direccion.Length > 100)
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text =
+                    "El nombre, la descripción y la dirección admiten " +
+                    "hasta 100 caracteres cada uno.";
+                return;
+            }
+
+            Negocios negocios = new Negocios();
+
+            int filasAfectadas = negocios.AgregarSucursal(
+                nombre,
+                descripcion,
+                Convert.ToInt32(ddlProvincia.SelectedValue),
+                direccion);
+
+            if (filasAfectadas == 1)
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "La sucursal se ha agregado con éxito.";
+                limpiarCampos();
+            }
+            else
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "No se pudo agregar la sucursal.";
             }
         }
 
