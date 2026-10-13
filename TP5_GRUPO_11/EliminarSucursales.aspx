@@ -41,13 +41,6 @@
             <asp:TextBox ID="txtIdSucursal" runat="server">
             </asp:TextBox>
 
-           <%-- <asp:RegularExpressionValidator ID="revIdSucursal" runat="server"
-                ControlToValidate="txtIdSucursal"
-                ValidationExpression="^[0-9]+$"
-                ErrorMessage="Ingrese un valor numérico."
-                ForeColor="Red">
-            </asp:RegularExpressionValidator>--%>
-
             <br /><br />
 
             <asp:Button ID="btnEliminar" runat="server"
