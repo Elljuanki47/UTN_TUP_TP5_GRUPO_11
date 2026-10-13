@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+﻿
+using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace TP5_GRUPO_11
 {
     public class Negocios
     {
-        private const string CadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
+        private const string CadenaConexion =
+            @"Data Source=localhost\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
 
         public DataTable Provincias()
         {
@@ -50,6 +49,53 @@ namespace TP5_GRUPO_11
             conexion.Close();
 
             return filas;
+        }
+
+        public DataTable ListarSucursales()
+        {
+            string consulta = @"
+                SELECT s.Id_Sucursal AS ID_SUCURSAL,
+                       s.NombreSucursal AS NOMBRE,
+                       s.DescripcionSucursal AS DESCRIPCION,
+                       p.DescripcionProvincia AS PROVINCIA,
+                       s.DireccionSucursal AS DIRECCION
+                FROM Sucursal s
+                INNER JOIN Provincia p
+                    ON s.Id_ProvinciaSucursal = p.Id_Provincia
+                ORDER BY s.Id_Sucursal";
+
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion))
+                {
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    return tabla;
+                }
+            }
+        }
+
+        public SqlDataReader FiltrarSucursal(int idSucursal)
+        {
+            SqlConnection conexion = new SqlConnection(CadenaConexion);
+
+            string consulta = @"
+                SELECT s.Id_Sucursal AS ID_SUCURSAL,
+                       s.NombreSucursal AS NOMBRE,
+                       s.DescripcionSucursal AS DESCRIPCION,
+                       p.DescripcionProvincia AS PROVINCIA,
+                       s.DireccionSucursal AS DIRECCION
+                FROM Sucursal s
+                INNER JOIN Provincia p
+                    ON s.Id_ProvinciaSucursal = p.Id_Provincia
+                WHERE s.Id_Sucursal = @IdSucursal";
+
+            SqlCommand comando = new SqlCommand(consulta, conexion);
+            comando.Parameters.AddWithValue("@IdSucursal", idSucursal);
+
+            conexion.Open();
+
+            return comando.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         public int EliminarSucursal(int idSucursal)
